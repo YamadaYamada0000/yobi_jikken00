@@ -13,7 +13,7 @@
     <br>課題終了後、2分経過したら前のサイトからテストを行ってください
     <FORM name="myForm"><textarea cols="30" rows="5" style="font-size:50px;" name="tbox" type="text"></textarea>
     </FORM>
-    <progress id="p1" min="0" max="135" value="0" ></progress>
+    <progress id="p1" min="0" max="141" value="0" ></progress>
     <FORM><INPUT type="button" onclick="Loopmsg(); proc1();" name="botan" value="スタート"></FORM>
     <p>現在時刻は<span id="real-time"></span>です</p>
 
@@ -51,7 +51,7 @@
     }
 
     function proc1() {
-	    if (document.getElementById('p1').value < 130 ) {
+	    if (document.getElementById('p1').value < 140 ) {
 		    document.getElementById('p1').value++;
 		    setTimeout(proc1, 100);
 	    }
