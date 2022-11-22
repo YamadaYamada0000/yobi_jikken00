@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英単語学習課題</title>
+</head>
+<body>
+    <h2>英単語テストの学習課題を行います</h2>
+    英単語を記憶してもらいます
+    <br>計50語の英単語とその日本語訳が5語ずつ15秒間、2回表示されるので記憶してください
+    <br>課題終了後、2分経過したら前のサイトからテストを行ってください
+    <FORM name="myForm"><textarea cols="30" rows="5" style="font-size:50px;" name="tbox" type="text"></textarea>
+    </FORM>
+    <progress id="p1" min="0" max="135" value="0" ></progress>
+    <FORM><INPUT type="button" onclick="Loopmsg(); proc1();" name="botan" value="スタート"></FORM>
+    <p>現在時刻は<span id="real-time"></span>です</p>
+
+    <script type="text/javascript">
+    let i = 0, v = 0;
+    msg = [　 // 表示する文字列の配列
+
+        "不安感　：malaise\n徹夜　　：vigil\n悩みの種：bane\n吐き気　：nausea\n引用　　：citation",
+        "群れ　　：horde\n心配　　：disquiet\n代理人　：surrogate\n特質　　：hallmark\n装飾　　：décor",
+        "こぶ　　：hump\n不機嫌　：tantrum\n後知恵　：hindsight\n花粉　　：pollen\n要塞　　：bastion",
+        "空洞　　：cavity\n麻酔　　：anesthesia\nどよめき：clamor\n確執　　：feud\n素材　　：fodder",
+        "起動力　：impetus\n深いしわ：furrow\n気休め　：placebo\n摂生　　：regimen\nあざけり：derision",
+        "色合い　：tinge\n台車　　：dolly\n特技　　：knack\n皮膚　　：cortex\n残忍性　：brutality",
+        "執行猶予：probation\n同志　　：brethren\n木箱　　：crate\n殴ること：clout\n感情移入：empathy",
+        "慰め　　：solace\n汚名　　：stigma\n不安定　：flux\n不安　　：misgiving\n効き目　：efficacy",
+        "精神　　：psyche\n根性　　：grit\n成金　　：upstart\n天災　　：scourge\n中断　　：hiatus",
+        "異端　　：heresy\n卒業生　：alumnus\n虚勢　　：bravado\n送還　　：extradition\n自責の念：remorse"
+    ]    
+    function Loopmsg() {
+    if (v < 21) {
+    v++;　   // vは繰り返し回数、この場合は24回で止まります
+    document.getElementById('p1').value=0;
+        if (i < msg.length) {
+        document.myForm.tbox.value = msg[i];
+        i++;
+            if (i == msg.length) {  // msg.lengthは配列の数
+            i = 0;
+            }
+            if(v==21){
+                document.myForm.tbox.value = "お疲れ様でした\n課題はこれで終了です\n2分後テストを行ってください";
+            }
+        setTimeout("Loopmsg()", 15000);　 //メッセージの変わる速度（単位は千分の一秒）
+        }
+    }
+    }
+
+    function proc1() {
+	    if (document.getElementById('p1').value < 135 ) {
+		    document.getElementById('p1').value++;
+		    setTimeout(proc1, 100);
+	    }
+    }
+
+    function Time() {
+        var realTime = new Date();
+        var hour = realTime.getHours();
+        var minutes  = realTime.getMinutes();
+        var seconds  = realTime.getSeconds();
+        var text = hour + ":" + minutes + ":" + seconds;
+        document.getElementById("real-time").innerHTML = text;
+    }
+            setInterval('Time()',1000);
+
+    </script>
+</body>
+</html>
